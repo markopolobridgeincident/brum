@@ -2,5 +2,6 @@
 using namespace std;
 
 int main(){
-    cout << "chche";
+    string text1 = "=========V\ítej do hry!=========";
+    cout << text1;
 }
