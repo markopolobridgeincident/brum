@@ -6,12 +6,46 @@ int main(){
     cout << "=========Vitej do hry!=========\n\n";
     cout << "Vyber si postavu:\n ";
 
+    int zivoty;
+    int mana;
+    int utok;
+    int zlato;
+    int vpostavy;
+    bool cheal;
+    bool odraz;
+    bool dvadamage;
+    do{
+    cout << "1)\n----Bojovnik----\n=  Zivoty: 150\n=  Mana: 140\n=  Special perk: Odrazeni utoku\n\n";
+    cout << "2) \n----Carodej----\n=  Zivoty: 90\n=  Mana: 200\n=  Special perk: Heal (Vyhealuje do max hp + 50 hp)\n\n";
+    cout << "3)\n ----Tank----\n= Zivoty: 250\n=  Mana: 50\n=  Special perk: Ultra utok (Da 2x vetsi damage)";
+    cout << "\n\n Vyber: ";
+    cin >> vpostavy; 
+    cout << endl;
+    switch (vpostavy){
+        case 1:
+            cout << "Zvolen Bojovnik!";
+            zivoty = 150;
+            mana = 140;
+            odraz = true;
+            break;
+        case 2:
+            cout << "Zvolen Carodej!";
+            zivoty = 90;
+            mana = 200;
+            cheal = true;
+            break;
+        case 3:
+            cout << "Zvolen Tank!";
+            zivoty = 250;
+            mana = 50;
+            dvadamage = true;
 
-
-    int zivoty = 100;
-    int mana = 100;
-    int utok = 5;
-    int zlato = 50;
+            break;
+        default:
+            cout << "Spatna hodnota!";
+            break;
+    }
+    }while(vpostavy < 1 || vpostavy > 3);
 //vesnice
     cout << "\n\nVybirani postavy ti zabralo cely den, a tak uz je vecer.\n";
     cout << "\n==== Po nejake dobe hledani jsi nasel vesnici! ====\n Zde si muzes doplnit zasoby, vylepsit si postavu, nebo doplnit energii na tvoje dobrodruzstvi!\n";
