@@ -229,8 +229,8 @@ int main(){
 //
         cout << "\n\n====Staty battlu====";
         cout << "\nTvoje HP: "<< zivoty << endl << "Mana: " << mana << endl << "Enemy HP: " << hpenemy << endl; 
-    }while(zivoty != 0 || hpenemy != 0);
-    cout << "Podarilo se ti zdolat enemaka! Gud job bro";
+    }while(zivoty > 0 || hpenemy > 0);
+    cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi x zlata a y xp!";
 }
 
 
