@@ -12,17 +12,18 @@ int main(){
     int zivoty;
     int mana;
     int utok;
-    int zlato;
+    int zlato =0;
     int vpostavy;
     bool cheal;
     bool odraz;
     bool dvadamage;
     int enemykilled = 0;
     int spentpenize =0;
+    int xp = 0;
     do{
     cout << "1)\n----Bojovnik----\n=  Zivoty: 150\n=  Mana: 140\n=  Special perk: Odrazeni utoku\n\n";
-    cout << "2) \n----Carodej----\n=  Zivoty: 90\n=  Mana: 200\n=  Special perk: Heal (Vyhealuje do max hp + 50 hp)\n\n";
-    cout << "3)\n ----Tank----\n=  Zivoty: 250\n=  Mana: 50\n=  Special perk: Ultra utok (Da 2x vetsi damage)";
+    cout << "2) \n----Carodej----\n=  Zivoty: 90\n=  Mana: 200\n=  Special perk: Blesk (Zasahne vsechny enemy najednou)\n\n";
+    cout << "3)\n----Tank----\n=  Zivoty: 250\n=  Mana: 100\n=  Special perk: Ultra utok (Da 2x vetsi damage)";
     cout << "\n\n Vyber: ";
     cin >> vpostavy; 
     cout << endl;
@@ -42,7 +43,7 @@ int main(){
         case 3:
             cout << "Zvolen Tank!";
             zivoty = 250;
-            mana = 50;
+            mana = 100;
             dvadamage = true;
 
             break;
@@ -52,9 +53,11 @@ int main(){
     }
     }while(vpostavy < 1 || vpostavy > 3);
 //vesnice
+    
     cout << "\n\nVybirani postavy ti zabralo cely den, a tak uz je vecer.\n";
+    sleep(2);
     cout << "\n==== Po nejake dobe hledani jsi nasel vesnici! ====\n Zde si muzes doplnit zasoby, vylepsit si postavu, nebo doplnit energii na tvoje dobrodruzstvi!\n";
-
+    sleep(2);
     int volbav;
     int cenahospoda = 50;
     int pocetls = 0;
@@ -66,10 +69,12 @@ int main(){
     bool rukavy = false;
     bool namesti = true;
     do{
+        
     cout << "\n 1) Odpocinek v nedaleke krcme\n 2) Navstiveni baby korenarky\n 3) Bez za kovarem\n 4) Pokracovani pres noc za dalsim dobrodruzstvim.\n Zvol moznost: ";
     cin >> volbav;
     switch(volbav){
         case 1:
+        if(zlato >=cenahospoda){
             cout << "\nZaplatil jsi hospodskemu " << cenahospoda << " zlata, aby te nechal prespat v hospode.";
             cout << "\nRano jsi se probudil odpocaty a muzes pokracovat na sve ceste.";
             zivoty = 100;
@@ -77,6 +82,10 @@ int main(){
             zlato = zlato - cenahospoda;
             spentpenize = spentpenize + cenahospoda;
             cenahospoda += 40;
+            }else{
+                cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                sleep(1);
+            }
             break;
         case 2:
             cout << "\n=== Prisel jsi k babce korenarce ===\n";
@@ -86,19 +95,35 @@ int main(){
             cout << "vyber: ";
             cin >> vyberb;
             if(vyberb == 1){
+                if(zlato >=25){
                pocetls ++;
                zlato -=25;
                spentpenize =+25;
+               }else{
+                cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                sleep(1);
+               }
             }  
             else if (vyberb == 2){
+                if(zlato >=40){
                 pocetlo ++;
                 zlato -=40;
                 spentpenize =+40;
+                }else{
+                    cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                    sleep(1);
+                }
             } 
             else if (vyberb == 3){
+                if(zlato >= 20){
                 pocetlr ++;
                 zlato -=20;
                 spentpenize =+20;
+                }else{
+                    sleep(1);
+                    cout << "\nNemas dostatek zlata! Padej pryc\n";
+                    sleep(1);
+                }
             } 
             }while(vyberb <1 || vyberb >3);
             break;
@@ -109,29 +134,51 @@ int main(){
             do{
             cin >> vyberk;
             if(vyberk == 1){
-              helma = true;
-              zivoty +=40;
-              zlato -=200;
-              spentpenize =+200;
+                if(zlato >=200){
+                    cout << "Zpracovani transakce";
+                    sleep(1);
+                    cout << "\nNakup uspesny!\n";
+                helma = true;
+                zivoty +=40;
+                zlato -=200;
+                spentpenize =+200;
+                }else cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                sleep(1);
               
             }else if (vyberk == 2){
-            rukavy = true;
-            zivoty +=25;
-            zlato -=100;
-            spentpenize =+100;
+                if(zlato >=100){
+                    cout << "Zpracovani transakce";
+                    sleep(1);
+                    cout << "\nNakup uspesny!\n";
+                    rukavy = true;
+                    zivoty +=25;
+                    zlato -=100;
+                    spentpenize =+100;
+            }else cout << "\nNemas dostatek zlata! Padej pryc!\n";
+            sleep(1);
             
             }else if (vyberk == 3){
+                if(zlato >=300){
+                    cout << "Zpracovani transakce";
+                    sleep(1);
+                    cout << "\nNakup uspesny!\n";
                 chestplate = true;
                 zivoty +=80;
                 zlato -=300;
                 spentpenize =+300;
-                
+                }else cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                sleep(1);
             }else if(vyberk == 4){
+                if(zlato >=250){
+                    cout << "Zpracovani transakce";
+                    sleep(1);
+                    cout << "\nNakup uspesny!\n";
                 gatata = true;
                 zivoty +=40;
                 zlato -=250;
                 spentpenize =+250;
-                
+                }else cout << "\nNemas dostatek zlata! Padej pryc!\n";
+                sleep(1);
             }else if(vyberk == 5){
                 cout << "\nZase navidenou!";
                 namesti = true;
@@ -139,9 +186,6 @@ int main(){
                 cout << "Musis si neco vybrat!";
             }
             }while(vyberk <1 || vyberk >5);
-            if(vyberk >=1 && vyberk <=4){ 
-                cout << "\nNakup uspesny!\n";
-            }
             break;
         default:
             namesti = false;
@@ -150,87 +194,176 @@ int main(){
 
     }while(namesti == true);
 //boj s 1 enemy
-    int hpenemy = 100;
+    bool odrazedlo = false;
+    int hpenemy1 = 100;
     cout << "\n====Nasel jsi sveho prvniho enemaka!====";
     cout << "\n\nCus pic clovece! Rozkopu ti drzku abys vedel.";
     sleep(2);
-
-    do{
-        int vyberu;
+    int vyberu;
+        
         do{
-    cout << "\nVyber utok!\n 1) Lehky (75 procent na hit)\n 2) Stredni (60 procent na hit)\n 3) Heavy (35 procent na hit)\n  Vyber: ";
-    
+        cout << "\n\n====Staty battlu====";
+        cout << "\nTvoje HP: "<< zivoty << endl << "Mana: " << mana << endl << "Enemy HP: " << hpenemy1 << endl;
+        sleep(1);
+        cout << "\nVyber utok!\n 1) Lehky (75 procent na hit; - 15 many)\n 2) Stredni (60 procent na hit; -25 many)\n 3) Heavy (35 procent na hit; -40 many)\n";
+            if(odraz == true){
+                cout << " 4) Odrazeni utoku (odrazi pristi enemy utok; -60 many)\n";
+            }else if (cheal == true){
+                cout << " 4) Blesk (Zasahne vsechny enemy najednou heavy utokem (50 procent na hit); -80 many)\n";
+            }else if(dvadamage == true){
+                cout << " 4) Ultra utok (2x damage z predesleho utoku (50 procent na hit); - 50 many)\n";
+            }
+            cout << "Vyber: ";
+    do{
     cin >> vyberu;
-    if(vyberu <1 || vyberu >3) cout << "\nZadal jsi spatnou hodnotu!\n";
-    }while(vyberu <1 || vyberu >3);
+    if(vyberu <1 || vyberu >4) cout << "\nZadal jsi spatnou hodnotu!\n";
+    }while(vyberu <1 || vyberu >4);
     int snautok;
-    int damage;
+    int damage = 0;
     int cislohlasky;
     string hlaskynetrefa[] = {"Netrefils!", "Proboha! Nauc se mirit!", "Jak jsi to mohl netrefit!", "O pet metru vedle!", "Zkus to priste!"};
+    
     if(vyberu ==1){
+        if(mana >=15){
         snautok = rand() % 100;
         if(snautok <=75){
             damage = 1+(rand() % 35);
             sleep(1);
             cout << "Uspech!\nUbral jsi enemy " << damage << " hp!";
-            hpenemy = hpenemy - damage;
+            hpenemy1 = hpenemy1 - damage;
         }else{
             cislohlasky = rand() % 5;
             cout << hlaskynetrefa[cislohlasky];
         }
+        }else{
+            cout << "Nedostatek many!";
+        }
 
     }else if(vyberu == 2){
+        if(mana >=25){
         snautok = rand() % 100;
         if(snautok <=60){
             damage = 20+(rand() % 50);
             sleep(1);
             cout << "Uspech!\nUbral jsi enemy " << damage << " hp!";
-            hpenemy = hpenemy - damage;
+            hpenemy1 = hpenemy1 - damage;
         }else{
             cislohlasky = rand() % 5;
             cout << hlaskynetrefa[cislohlasky];
         }
+        }else{
+            cout << "Nedostatek many!";
+        }
     }else if(vyberu == 3){
+        if(mana >=40){
         snautok = rand() % 100;
         if(snautok <=35){
             damage =50+(rand() % 50);
             sleep(1);
             cout << "Uspech!\nUbral jsi enemy " << damage << " hp!";
-            hpenemy = hpenemy - damage;
+            hpenemy1 = hpenemy1 - damage;
         }else{
             cislohlasky = rand() % 5;
             cout << hlaskynetrefa[cislohlasky];
         }
+        }else{
+            cout << "Nedostatek many";
+        }
+    }else if(vyberu == 4){
+        //ability: bojovnik
+        if(odraz == true){
+            if(mana >=60){
+                cout << "Abilita pouzita\n";
+                odrazedlo = true;
+            }else{
+                cout << "Nedostate many!";
+            }
+        //ability: carodej
+        }else if(cheal == true){
+            if(mana >=80){
+            snautok = rand() % 100;
+            if(snautok <=50){
+                damage =50+(rand() % 50);
+                sleep(1);
+                cout << "Uspech!\nUbral jsi vsem enemy " << damage << " hp!";
+                hpenemy1 = hpenemy1 - damage;
+                //hpenemy2 = hpenemy2 - damage;
+                //hpenemy3 = hpenemy3 - damage;
+                
+            }else{
+                cislohlasky = rand() % 5;
+                cout << hlaskynetrefa[cislohlasky];
+            }
+            }else{
+                cout << "Nedostatek many!";
+            }
+        //ability: TANK
+        }else if(dvadamage == true){
+            if(mana >=50){
+            snautok = rand() % 100;
+            if(snautok <=50){
+                damage = damage*2;
+                sleep(1);
+                cout << "Uspech!\nUbral jsi enemy " << damage << " hp!";
+                hpenemy1 = hpenemy1 - damage;
+            }else{
+                cislohlasky = rand() % 5;
+                cout << hlaskynetrefa[cislohlasky];
+            }
+            }else{
+            cout << "Nedostatek many";
+            }
+        }
     }
-    if(hpenemy < 0){ 
-        hpenemy = 0;
+
+    if(hpenemy1 < 0){ 
+        hpenemy1 = 0;
         }
 //na rade je enemy
-    if(hpenemy !=0){
-    int edamage;
+    if(hpenemy1 !=0){
+    int edamage1;
     sleep(1);
-    cout << "\nNa rade je enemy!\n";
+    cout << "\n\nNa rade je enemy!";
     sleep(1);
     cout << "\nEnemak se rozprahuje!\n";
-    edamage =1+(rand() % 60);
+    edamage1 =1+(rand() % 60);
     sleep(1);
-    cout << "A dal ti za " << edamage << "!";
-    zivoty = zivoty - edamage;
+    if(odrazedlo == false){
+    cout << "A dal ti za " << edamage1 << "!";
+    zivoty = zivoty - edamage1;
+    }else{
+        cout << "Pouzil jsi svuj stiti a odrazil utok.";
+        odrazedlo = false;
+    }
     if(zivoty <=0){
         zivoty = 0;
         sleep(1);
-        cout << "\n\nZemrel jsi! Ja vedel ze to nedohrajes!\n";
+        cout << "\n\nZemrel jsi!\n";
         cout << "====Tvoje staty====\n Zabiti enemaci: " << enemykilled << "\n Utracene penize: " << spentpenize;
         return 0;
     }
     cout << endl;
     sleep(1);
         }
-//
-        cout << "\n\n====Staty battlu====";
-        cout << "\nTvoje HP: "<< zivoty << endl << "Mana: " << mana << endl << "Enemy HP: " << hpenemy << endl; 
-    }while(zivoty > 0 || hpenemy > 0);
-    cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi x zlata a y xp!";
+// 
+    }while(zivoty > 0 || hpenemy1 > 0);
+    int szlato;
+    if(hpenemy1 == 0){
+
+        xp = xp + 90;
+        szlato = rand() % 2;
+        if(szlato == 2){
+            zlato = zlato + 100;
+        }
+    }
+    if(szlato == 2){
+        cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi 100 zlata a 100 xp!";
+    } else{
+        cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi 100 xp!";
+    }
+    
 }
 
 
+
+// TO DO: Fixnout odcitani many (neodcita se)
