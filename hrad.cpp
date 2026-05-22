@@ -409,4 +409,4 @@ if(hpenemy1 == 0){
 
 
 
-// TO DO: Battle 2x enemy, 3x enemy, Mini-Boss, Mega-Boss
+// TO DO: Battle 2x enemy, 3x enemy, Mini-Boss, Mega-Boss,s
