@@ -20,6 +20,7 @@ int main(){
     int enemykilled = 0;
     int spentpenize =0;
     int xp = 0;
+    int zlatosance;
     do{
     cout << "1)\n----Bojovnik----\n=  Zivoty: 150\n=  Mana: 140\n=  Special perk: Odrazeni utoku\n\n";
     cout << "2) \n----Carodej----\n=  Zivoty: 90\n=  Mana: 200\n=  Special perk: Blesk (Zasahne vsechny enemy najednou)\n\n";
@@ -190,9 +191,9 @@ int main(){
         default:
             namesti = false;
             cout << "Pokracujes tedy dale.\n";
-    }
-
+        }   
     }while(namesti == true);
+//konec vesnice
 //boj s 1 enemy
     bool odrazedlo = false;
     int hpenemy1 = 100;
@@ -201,7 +202,7 @@ int main(){
     sleep(2);
     int vyberu;
         
-        do{
+        
         cout << "\n\n====Staty battlu====";
         cout << "\nTvoje HP: "<< zivoty << endl << "Mana: " << mana << endl << "Enemy HP: " << hpenemy1 << endl;
         sleep(1);
@@ -211,10 +212,18 @@ int main(){
             }else if (cheal == true){
                 cout << " 4) Blesk (Zasahne vsechny enemy najednou heavy utokem (50 procent na hit); -80 many)\n";
             }else if(dvadamage == true){
-                cout << " 4) Ultra utok (2x damage z predesleho utoku (50 procent na hit); - 50 many)\n";
+                cout << " 4) Ultra utok (2x damage z predesleho utoku (50 procent na hit); - 60 many)\n";
             }
-            cout << "Vyber: ";
+//chcipl na manu
+    bool chciplnamanu = false;
+    if(mana <=0 && zivoty >0){
+        chciplnamanu = true;
+    }
+    bool attack = false;
+if(chciplnamanu == false){
+do{   
     do{
+    cout << "Vyber: ";
     cin >> vyberu;
     if(vyberu <1 || vyberu >4) cout << "\nZadal jsi spatnou hodnotu!\n";
     }while(vyberu <1 || vyberu >4);
@@ -225,7 +234,9 @@ int main(){
     
     if(vyberu ==1){
         if(mana >=15){
+            mana = mana -15;
         snautok = rand() % 100;
+        attack = true;
         if(snautok <=75){
             damage = 1+(rand() % 35);
             sleep(1);
@@ -241,6 +252,8 @@ int main(){
 
     }else if(vyberu == 2){
         if(mana >=25){
+            attack = true;
+            mana = mana -25;
         snautok = rand() % 100;
         if(snautok <=60){
             damage = 20+(rand() % 50);
@@ -256,6 +269,8 @@ int main(){
         }
     }else if(vyberu == 3){
         if(mana >=40){
+            attack = true;
+            mana = mana -40;
         snautok = rand() % 100;
         if(snautok <=35){
             damage =50+(rand() % 50);
@@ -273,6 +288,8 @@ int main(){
         //ability: bojovnik
         if(odraz == true){
             if(mana >=60){
+                attack = true;
+                mana = mana -60;
                 cout << "Abilita pouzita\n";
                 odrazedlo = true;
             }else{
@@ -281,6 +298,8 @@ int main(){
         //ability: carodej
         }else if(cheal == true){
             if(mana >=80){
+                attack = true;
+                mana = mana -80;
             snautok = rand() % 100;
             if(snautok <=50){
                 damage =50+(rand() % 50);
@@ -300,6 +319,8 @@ int main(){
         //ability: TANK
         }else if(dvadamage == true){
             if(mana >=50){
+                attack = true;
+                mana = mana -60;
             snautok = rand() % 100;
             if(snautok <=50){
                 damage = damage*2;
@@ -315,13 +336,18 @@ int main(){
             }
         }
     }
-
+    
+  }while(attack == false && mana>=15);
+    attack = false;
+    if(mana <0) mana = 0;
     if(hpenemy1 < 0){ 
         hpenemy1 = 0;
         }
 //na rade je enemy
-    if(hpenemy1 !=0){
     int edamage1;
+
+    if(hpenemy1 !=0){
+    
     sleep(1);
     cout << "\n\nNa rade je enemy!";
     sleep(1);
@@ -329,41 +355,58 @@ int main(){
     edamage1 =1+(rand() % 60);
     sleep(1);
     if(odrazedlo == false){
-    cout << "A dal ti za " << edamage1 << "!";
+    cout << "A dal ti za " << edamage1 << "!\n";
     zivoty = zivoty - edamage1;
     }else{
         cout << "Pouzil jsi svuj stiti a odrazil utok.";
         odrazedlo = false;
     }
+
+    }
     if(zivoty <=0){
         zivoty = 0;
         sleep(1);
-        cout << "\n\nZemrel jsi!\n";
-        cout << "====Tvoje staty====\n Zabiti enemaci: " << enemykilled << "\n Utracene penize: " << spentpenize;
-        return 0;
     }
+
+    }while(zivoty > 0 || hpenemy1 > 0);
+//staty smrt + chcipl na manu
+        if(chciplnamanu == true || zivoty ==0){
+            if(chciplnamanu == true) cout << "V BOJI SI PADL VYCERPANIM!\n";
+            if(zivoty == 0) cout << "ENEMY TE ZABIL!\n";
+            cout << "====Tvoje staty====\n Zabiti enemaci: " << enemykilled << "\n Utracene penize: " << spentpenize;
+            return 0;
+        }  
     cout << endl;
     sleep(1);
-        }
-// 
-    }while(zivoty > 0 || hpenemy1 > 0);
-    int szlato;
-    if(hpenemy1 == 0){
+        
+        
+if(hpenemy1 == 0){
 
         xp = xp + 90;
-        szlato = rand() % 2;
-        if(szlato == 2){
+        zlatosance = rand() % 2;
+        if(zlatosance == 2){
             zlato = zlato + 100;
         }
     }
-    if(szlato == 2){
+    if( zlatosance == 2){
         cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi 100 zlata a 100 xp!";
     } else{
         cout << "Podarilo se ti zdolat enemaka!\n Ziskal jsi 100 xp!";
     }
     
+
+ //konec battle s 1 enemy
+        
+    
+
+
+
+
+
+
+
 }
 
 
 
-// TO DO: Fixnout odcitani many (neodcita se)
+// TO DO: Battle 2x enemy, 3x enemy, Mini-Boss, Mega-Boss
