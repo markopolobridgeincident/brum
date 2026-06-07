@@ -748,6 +748,11 @@ bool hlavni_boss(int &zivoty, int &mana, int &max_zivoty, int &max_mana, int &zl
                     sleep(1);
                 }
             }
+
+            cout << "\nGeargrind drti vse pred sebou!\n";
+            sleep(1);
+            if(odrazedlo == false){ cout << "A dal ti za " << edamage << "!\n"; zivoty -= edamage; }
+            else{ cout << "Pouzil jsi svuj stit a odrazil ten masivni utok.\n"; odrazedlo = false; }
         }
         
         if(zivoty <= 0){ zivoty = 0; sleep(1); }
