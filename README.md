@@ -1,1 +1,1 @@
-# brum
+cus pic tohoe je moje hra lol
